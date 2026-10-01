@@ -122,7 +122,7 @@
           <p>Pay <strong id="wise-order-price"></strong> using this link:</p>
           <p><a id="wise-pay-link" target="_blank" rel="noopener noreferrer">Open Wise payment page →</a></p>
           <p>Add this reference to your transfer:</p><code id="wise-reference"></code>
-          <p>After paying, email the reference and delivery address to <a href="mailto:vmlhub.ai@gmail.com?subject=Wan%20Studio%20Pro%20Wise%20payment">vmlhub.ai@gmail.com</a> for payment verification and key delivery.</p>
+          <p>Your key is emailed after the payment is matched. If it does not arrive, send this reference to <a href="mailto:vmlhub.ai@gmail.com?subject=Wan%20Studio%20Pro%20Wise%20payment">vmlhub.ai@gmail.com</a>.</p>
         </div>
         <p class="method-foot">Wise payment and delivery follow the Wise service’s separate process.</p>
       </section>
@@ -171,7 +171,7 @@
         if (!response.ok) throw new Error('Could not start Wise checkout');
         const order = await response.json();
         const url = new URL(order.pay_url);
-        if (url.protocol !== 'https:' || !(url.hostname === 'wise.com' || url.hostname.endsWith('.wise.com'))) throw new Error('Unexpected Wise payment URL');
+        if (url.protocol !== 'https:' || !(url.hostname === 'wise.com' || url.hostname.endsWith('.wise.com')) || !order.code || !order.display) throw new Error('Unexpected Wise payment details');
         document.getElementById('wise-pay-link').href = url.href;
         document.getElementById('wise-reference').textContent = String(order.code || '');
         document.getElementById('wise-order-price').textContent = String(order.display || 'the amount shown by Wise');

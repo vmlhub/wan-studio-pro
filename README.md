@@ -15,5 +15,5 @@ It contains no payment secrets or private keys.
 
 - PayPal price is fetched on each page load from Odoo's `/wan-paypal/checkout-config`, which reads `PAYPAL_AMOUNT_USD`. The PayPal button opens Odoo's checkout, where the actual order amount is set and validated. If the price cannot be fetched, the page asks buyers to check it at checkout.
 - Wise price is fetched from the Wise backend `/config`, where `PRICE_DISPLAY` and `PRICE_AMOUNT` must agree. Wise has its own price, which may differ from PayPal's.
-- PayPal keys are emailed after a confirmed capture. Wise follows its existing separate payment process; buyers receive a reference and should email it for verification.
+- PayPal keys are emailed after a confirmed capture. Wise follows its existing separate payment process; buyers receive a reference to use with their transfer and can contact support if the key email does not arrive.
 - After changing either price, reload the page and verify both the displayed amount and the final payment amount before accepting sales.
