@@ -1,19 +1,16 @@
 # Wan Studio Pro checkout page
 
-Standalone GitHub Pages site for `https://vmlhub.github.io/wan-studio-pro/`.
-It contains no payment secrets or private keys.
+Standalone GitHub Pages site at `https://vmlhub.github.io/wan-studio-pro/`.
+The public checkout offers PayPal and contains no payment secrets or private keys.
 
-## Publish
+## Price and delivery
 
-1. Create a **public**, empty GitHub repository named `wan-studio-pro` while signed in as `vmlhub`. Do not initialize it with a README or template.
-2. From this folder, run `git push -u origin main` after the local commit is ready.
-3. In the GitHub repository, open **Settings → Pages** and choose **Deploy from a branch → main → /(root)**. Save. The page URL is `https://vmlhub.github.io/wan-studio-pro/`.
-4. Redeploy the latest Wise Render backend if it does not deploy automatically. Its code now allows `https://vmlhub.github.io` even when an older `ALLOWED_ORIGINS` value remains in Render.
-5. The Wan Studio Pro Space now uses this page by default and migrates its old GitHub URL automatically. If you have a different custom `BUY_URL`, set it to `https://vmlhub.github.io/wan-studio-pro/`.
+- The displayed price is fetched on each page load from Odoo's `/wan-paypal/checkout-config`, which reads `PAYPAL_AMOUNT_USD`.
+- The PayPal button opens Odoo's checkout. Odoo sets and validates the actual order amount and emails the key after a confirmed payment.
+- If the public price cannot be fetched, the page asks buyers to check the price at checkout.
+- After changing `PAYPAL_AMOUNT_USD`, reload the page and verify the displayed amount and the final amount on PayPal before accepting sales.
 
-## Prices and delivery
+## Publishing
 
-- PayPal price is fetched on each page load from Odoo's `/wan-paypal/checkout-config`, which reads `PAYPAL_AMOUNT_USD`. The PayPal button opens Odoo's checkout, where the actual order amount is set and validated. If the price cannot be fetched, the page asks buyers to check it at checkout.
-- Wise price is fetched from the Wise backend `/config`, where `PRICE_DISPLAY` and `PRICE_AMOUNT` must agree. Wise has its own price, which may differ from PayPal's.
-- PayPal keys are emailed after a confirmed capture. Wise follows its existing separate payment process; buyers receive a reference to use with their transfer and can contact support if the key email does not arrive.
-- After changing either price, reload the page and verify both the displayed amount and the final payment amount before accepting sales.
+The `main` branch is published through GitHub Pages from the repository root.
+The Wan Studio Pro Space uses this URL for its purchase link.
