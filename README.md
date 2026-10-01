@@ -9,7 +9,7 @@ It contains no payment secrets or private keys.
 2. From this folder, run `git push -u origin main` after the local commit is ready.
 3. In the GitHub repository, open **Settings → Pages** and choose **Deploy from a branch → main → /(root)**. Save. The page URL is `https://vmlhub.github.io/wan-studio-pro/`.
 4. Redeploy the latest Wise Render backend if it does not deploy automatically. Its code now allows `https://vmlhub.github.io` even when an older `ALLOWED_ORIGINS` value remains in Render.
-5. Set `BUY_URL=https://vmlhub.github.io/wan-studio-pro/` in the Wan Studio Pro Hugging Face Space variables, then restart it. The app source default is also updated for its next deployment.
+5. The Wan Studio Pro Space now uses this page by default and migrates its old GitHub URL automatically. If you have a different custom `BUY_URL`, set it to `https://vmlhub.github.io/wan-studio-pro/`.
 
 ## Prices and delivery
 
